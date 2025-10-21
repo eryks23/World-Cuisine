@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>World Cuisine</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header>
+            <nav aria-label="Main navigation">
+                <a href="#galeria" class="nav-link">Gallery</a>
+                <a href="#dania" class="nav-link">Dish list</a>
+                <a href="#kontakt" class="nav-link">Contact</a>
+            </nav>
+        </header>
+
+        <main class="wrap">
+            <!-- GALLERY -->
+            <section id="galeria" class="panel">
+                <div class="controls">
+                    <button id="ukryj">Hide all</button>
+                    <button id="pokaz" class="ghost">Show all</button>
+                    <button id="ramka" class="small">Add frame</button>
+                    <button id="ramka2" class="small ghost">Remove frame</button>
+                    <button id="shuffle" class="small">Shuffle</button>
+                </div>
+
+                <div class="gallery-grid" id="gallery">
+                    <div class="card" data-title="Sushi">
+                        <img src="image/sushi.png" alt="Sushi" data-title="Sushi" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'><rect fill=\'%23f0e6d2\' width=\'100%\' height=\'100%\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237a6a5a\' font-size=\'20\'>sushi.png</text></svg>'">
+                        <div class="meta"><strong>Sushi</strong><small>Japan</small>
+                            <div class="card-footer"><span class="tag">Tradition</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-title="Pizza">
+                        <img src="image/pizza.png" alt="Pizza" data-title="Pizza" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'><rect fill=\'%23f0e6d2\' width=\'100%\' height=\'100%\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237a6a5a\' font-size=\'20\'>pizza.png</text></svg>'">
+                        <div class="meta"><strong>Pizza</strong><small>Italy</small>
+                            <div class="card-footer"><span class="tag">Street</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-title="Tacos">
+                        <img src="image/tacos.png" alt="Tacos" data-title="Tacos" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'><rect fill=\'%23f0e6d2\' width=\'100%\' height=\'100%\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237a6a5a\' font-size=\'20\'>tacos.png</text></svg>'">
+                        <div class="meta"><strong>Tacos</strong><small>Mexico</small>
+                            <div class="card-footer"><span class="tag">Street food</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-title="Curry">
+                        <img src="image/curry.png" alt="Curry" data-title="Curry" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'><rect fill=\'%23f0e6d2\' width=\'100%\' height=\'100%\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237a6a5a\' font-size=\'20\'>curry.png</text></svg>'">
+                        <div class="meta"><strong>Curry</strong><small>India</small>
+                            <div class="card-footer"><span class="tag">Aromas</span></div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-title="Burger">
+                        <img src="image/burger.png" alt="Burger" data-title="Burger" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'><rect fill=\'%23f0e6d2\' width=\'100%\' height=\'100%\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%237a6a5a\' font-size=\'20\'>burger.png</text></svg>'">
+                        <div class="meta"><strong>Burger</strong><small>USA</small>
+                            <div class="card-footer"><span class="tag">Comfort</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SIDEBAR: dish list + add form -->
+            <aside class="panel" id="dania">
+                <h3>Dish list</h3>
+                <ul id="lista-dan">
+                    <li>Pizza – Italy <button class="remove" title="Remove">×</button></li>
+                    <li>Sushi – Japan <button class="remove" title="Remove">×</button></li>
+                    <li>Tacos – Mexico <button class="remove" title="Remove">×</button></li>
+                </ul>
+
+                <form id="dodaj-form">
+                    <input id="nazwa" type="text" placeholder="Dish name" aria-label="Dish name">
+                    <input id="kraj" type="text" placeholder="Country of origin" aria-label="Country of origin">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <button id="dodaj" type="button">Add dish</button>
+                        <button id="usun" type="button" class="ghost">Remove all</button>
+                        <button id="kolor" type="button" class="ghost">Change background color</button>
+                    </div>
+                    <p id="komunikat" aria-live="polite"></p>
+                </form>
+            </aside>
+
+            <!-- CONTACT -->
+            <section class="panel" id="kontakt">
+                <h3>Have an idea for a dish?</h3>
+                <p>Send us a message!</p>
+                <form id="formularz">
+                    <label>Name</label>
+                    <input id="imie" type="text" placeholder="Your name">
+                    <label>Message</label>
+                    <textarea id="wiadomosc" placeholder="Describe the dish"></textarea>
+                    <label>E-mail</label>
+                    <input id="email" type="email" placeholder="email@example.com">
+                    <label><input id="zgoda" type="checkbox"> I accept the terms</label>
+                    <div style="display:flex;gap:8px;margin-top:6px">
+                        <button type="submit">Send</button>
+                        <button id="clear" type="button" class="ghost">Clear</button>
+                    </div>
+                    <p id="potwierdzenie" aria-live="polite"></p>
+                </form>
+            </section>
+        </main>
+
+        <div class="toast" id="toast"></div>
+        <div class="modal-backdrop" id="modal">
+            <div class="modal" role="dialog" aria-modal="true">
+                <div style="display:flex;justify-content:space-between;gap:12px;align-items:center">
+                    <h4 id="modal-title">Photo</h4>
+                    <div style="font-size:13px;color:var(--muted)" id="modal-meta"></div>
+                </div>
+                <div id="modal-body" style="margin-top:12px"></div>
+                <div id="modal-comments" style="margin-top:12px">
+                    <!-- comments injected here -->
+                </div>
+                <div style="text-align:right;margin-top:12px">
+                    <button id="close-modal" class="ghost">Close</button>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="jquery/script.js"></script>
+    </body>
+</html>
