@@ -10,21 +10,25 @@
     <body>
         <header>
             <nav aria-label="Main navigation">
-                <a href="#galeria" class="nav-link">Gallery</a>
-                <a href="#dania" class="nav-link">Dish list</a>
-                <a href="#kontakt" class="nav-link">Contact</a>
+                <a href="#gallery-section" class="nav-link">Gallery</a>
+                <a href="#dishes-section" class="nav-link">Dish list</a>
+                <a href="#contact-section" class="nav-link">Contact</a>
             </nav>
         </header>
 
         <main class="wrap">
             <!-- GALLERY -->
-            <section id="galeria" class="panel">
+            <section id="gallery-section" class="panel">
                 <div class="controls">
-                    <button id="ukryj">Hide all</button>
-                    <button id="pokaz" class="ghost">Show all</button>
-                    <button id="ramka" class="small">Add frame</button>
-                    <button id="ramka2" class="small ghost">Remove frame</button>
+                    <button id="hide">Hide all</button>
+                    <button id="show" class="ghost">Show all</button>
+                    <button id="frame" class="small">Add frame</button>
+                    <button id="unframe" class="small ghost">Remove frame</button>
                     <button id="shuffle" class="small">Shuffle</button>
+                    <!-- Added a toggle for comments to match the JS hint -->
+                    <label class="comments-toggle" style="margin-left:auto;font-size:14px;cursor:pointer;">
+                        <input type="checkbox" id="comments-toggle" checked> Portfolio comments
+                    </label>
                 </div>
 
                 <div class="gallery-grid" id="gallery">
@@ -66,43 +70,43 @@
             </section>
 
             <!-- SIDEBAR: dish list + add form -->
-            <aside class="panel" id="dania">
+            <aside class="panel" id="dishes-section">
                 <h3>Dish list</h3>
-                <ul id="lista-dan">
+                <ul id="dish-list">
                     <li>Pizza – Italy <button class="remove" title="Remove">×</button></li>
                     <li>Sushi – Japan <button class="remove" title="Remove">×</button></li>
                     <li>Tacos – Mexico <button class="remove" title="Remove">×</button></li>
                 </ul>
 
-                <form id="dodaj-form">
-                    <input id="nazwa" type="text" placeholder="Dish name" aria-label="Dish name">
-                    <input id="kraj" type="text" placeholder="Country of origin" aria-label="Country of origin">
+                <form id="add-dish-form">
+                    <input id="dish-name" type="text" placeholder="Dish name" aria-label="Dish name">
+                    <input id="dish-country" type="text" placeholder="Country of origin" aria-label="Country of origin">
                     <div style="display:flex;gap:8px;flex-wrap:wrap">
-                        <button id="dodaj" type="button">Add dish</button>
-                        <button id="usun" type="button" class="ghost">Remove all</button>
-                        <button id="kolor" type="button" class="ghost">Change background color</button>
+                        <button id="add-dish" type="button">Add dish</button>
+                        <button id="clear-dishes" type="button" class="ghost">Remove all</button>
+                        <button id="random-color" type="button" class="ghost">Change background color</button>
                     </div>
-                    <p id="komunikat" aria-live="polite"></p>
+                    <p id="dish-message" aria-live="polite"></p>
                 </form>
             </aside>
 
             <!-- CONTACT -->
-            <section class="panel" id="kontakt">
+            <section class="panel" id="contact-section">
                 <h3>Have an idea for a dish?</h3>
                 <p>Send us a message!</p>
-                <form id="formularz">
+                <form id="contact-form">
                     <label>Name</label>
-                    <input id="imie" type="text" placeholder="Your name">
+                    <input id="contact-name" type="text" placeholder="Your name">
                     <label>Message</label>
-                    <textarea id="wiadomosc" placeholder="Describe the dish"></textarea>
+                    <textarea id="contact-message" placeholder="Describe the dish"></textarea>
                     <label>E-mail</label>
-                    <input id="email" type="email" placeholder="email@example.com">
-                    <label><input id="zgoda" type="checkbox"> I accept the terms</label>
+                    <input id="contact-email" type="email" placeholder="email@example.com">
+                    <label><input id="contact-consent" type="checkbox"> I accept the terms</label>
                     <div style="display:flex;gap:8px;margin-top:6px">
                         <button type="submit">Send</button>
-                        <button id="clear" type="button" class="ghost">Clear</button>
+                        <button id="clear-form" type="button" class="ghost">Clear</button>
                     </div>
-                    <p id="potwierdzenie" aria-live="polite"></p>
+                    <p id="contact-confirmation" aria-live="polite"></p>
                 </form>
             </section>
         </main>
