@@ -184,4 +184,3 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) for de
 
 - Repository: [github.com/eryks23/World-Cuisine](https://github.com/eryks23/World-Cuisine)
 - GitHub: [@eryks23](https://github.com/eryks23)
-- Issues and feature requests: please use the [GitHub Issues](https://github.com/eryks23/World-Cuisine/issues) page.
