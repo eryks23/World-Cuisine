@@ -17,7 +17,6 @@
         </header>
 
         <main class="wrap">
-            <!-- GALLERY -->
             <section id="gallery-section" class="panel">
                 <div class="controls">
                     <button id="hide">Hide all</button>
@@ -25,7 +24,7 @@
                     <button id="frame" class="small">Add frame</button>
                     <button id="unframe" class="small ghost">Remove frame</button>
                     <button id="shuffle" class="small">Shuffle</button>
-                    <!-- Added a toggle for comments to match the JS hint -->
+                    <button id="lightbox" class="small ghost">Lightbox</button>
                     <label class="comments-toggle" style="margin-left:auto;font-size:14px;cursor:pointer;">
                         <input type="checkbox" id="comments-toggle" checked> Portfolio comments
                     </label>
@@ -69,7 +68,6 @@
                 </div>
             </section>
 
-            <!-- SIDEBAR: dish list + add form -->
             <aside class="panel" id="dishes-section">
                 <h3>Dish list</h3>
                 <ul id="dish-list">
@@ -90,7 +88,6 @@
                 </form>
             </aside>
 
-            <!-- CONTACT -->
             <section class="panel" id="contact-section">
                 <h3>Have an idea for a dish?</h3>
                 <p>Send us a message!</p>
@@ -119,9 +116,7 @@
                     <div style="font-size:13px;color:var(--muted)" id="modal-meta"></div>
                 </div>
                 <div id="modal-body" style="margin-top:12px"></div>
-                <div id="modal-comments" style="margin-top:12px">
-                    <!-- comments injected here -->
-                </div>
+                <div id="modal-comments" style="margin-top:12px"></div>
                 <div style="text-align:right;margin-top:12px">
                     <button id="close-modal" class="ghost">Close</button>
                 </div>
