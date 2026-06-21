@@ -1,5 +1,4 @@
 $(function() {
-    // toast helper
     function showToast(text, time) {
         time = time || 2200;
         var t = $('#toast').text(text).stop(true).fadeIn(180);
@@ -8,19 +7,18 @@ $(function() {
         t.data('timeout', id);
     }
 
-    // gallery controls
     $('#hide').click(() => $('#gallery .card img').fadeOut(400));
     $('#show').click(() => $('#gallery .card img').fadeIn(400));
     $('#frame').click(() => {
         $('#gallery .card img').css({'border': '6px solid rgba(0,0,0,0.06)', 'padding': '2px', 'border-radius': '12px'});
         showToast('Frames added');
     });
+    
     $('#unframe').click(() => {
         $('#gallery .card img').css({'border': 'none', 'padding': '0'});
         showToast('Frames removed');
     });
 
-    // lightbox toggle
     var lightboxMode = false;
     $('#lightbox').click(function() {
         lightboxMode = !lightboxMode;
@@ -28,7 +26,6 @@ $(function() {
         showToast(lightboxMode ? 'Lightbox: ON' : 'Lightbox: OFF');
     });
 
-    // open modal with image and comments
     $('#gallery').on('click', 'img', function() {
         if (!lightboxMode) return;
         var title = $(this).data('title') || $(this).attr('alt') || '';
@@ -39,11 +36,13 @@ $(function() {
         $('#modal').fadeIn(180);
     });
 
-    // close modal
-    $('#close-modal, #modal').click(e => { if (e.target !== this && e.target.id !== 'modal') return; $('#modal').fadeOut(180); });
+    $('#close-modal, #modal').click(function(e) {
+        if (e.target === this) {
+            $('#modal').fadeOut(180);
+        }
+    });
     $(document).keydown(e => { if (e.key === 'Escape') $('#modal').fadeOut(180); });
 
-    // shuffle gallery
     $('#shuffle').click(() => {
         var cards = $('#gallery .card');
         cards.sort(() => 0.5 - Math.random());
@@ -51,19 +50,22 @@ $(function() {
         showToast('Gallery shuffled');
     });
 
-    // dish list functions
     function addDish(name, country, save) {
         if (!name || !country) return;
         var li = $('<li>').text(name + ' – ' + country);
-        var btn = $('<button class="remove" title="Remove">×</button>').click(function() {
-            $(this).closest('li').remove();
-            showToast('Removed: ' + name);
-            saveList();
-        });
+        var btn = $('<button class="remove" title="Remove">×</button>');
         li.append(' ').append(btn);
         $('#dish-list').append(li);
         if (save) saveList();
     }
+
+    $('#dish-list').on('click', '.remove', function() {
+        var li = $(this).closest('li');
+        var name = li.text().replace(' ×', '').trim();
+        li.remove();
+        showToast('Removed: ' + name);
+        saveList();
+    });
 
     function saveList() {
         var arr = [];
@@ -103,35 +105,32 @@ $(function() {
         $('body').animate({opacity: 0.2}, 150, function() { $(this).css('background', color).animate({opacity: 1}, 180); });
     });
 
-    // contact form
     $('#contact-form').submit(function(e) {
         e.preventDefault();
         var name = $('#contact-name').val().trim(), msg = $('#contact-message').val().trim(), mail = $('#contact-email').val().trim();
         var ok = $('#contact-consent').is(':checked');
         if (!name || !msg || !mail) { $('#contact-confirmation').text('Fill all fields!').css('color', 'red'); return; }
         if (!ok) { $('#contact-confirmation').text('You must accept terms').css('color', 'red'); return; }
-        
+
         var msgs = JSON.parse(localStorage.getItem('messages') || '[]');
         msgs.push({name: name, email: mail, message: msg, date: new Date().toISOString()});
         localStorage.setItem('messages', JSON.stringify(msgs));
-        
+
         $('#contact-confirmation').text('Thank you!').css('color', 'green');
         showToast('Message saved (demo)');
         $('#contact-form')[0].reset();
         setTimeout(() => $('#contact-confirmation').fadeOut(800, function() { $(this).show().css('opacity', 1).text(''); }), 1200);
     });
-    
+
     $('#clear-form').click(() => { $('#contact-form')[0].reset(); $('#contact-confirmation').text(''); });
 
-    // smooth scroll
-    $('.nav-link').click(function(e) { 
-        e.preventDefault(); 
-        $('html,body').animate({scrollTop: $($(this).attr('href')).offset().top - 8}, 400); 
+    $('.nav-link').click(function(e) {
+        e.preventDefault();
+        $('html,body').animate({scrollTop: $($(this).attr('href')).offset().top - 8}, 400);
     });
 
     loadList();
 
-    // COMMENTS (per image)
     function commentsEnabled() { return $('#comments-toggle').is(':checked'); }
     function commentsKey(title) { return 'comments_for_' + (title || 'unknown').replace(/\s+/g, '_').toLowerCase(); }
     function getComments(title) { return JSON.parse(localStorage.getItem(commentsKey(title)) || '[]'); }
@@ -145,7 +144,7 @@ $(function() {
         }
         var comments = getComments(title), list = $('<div aria-live="polite"></div>');
         if (!comments.length) list.append('<div style="color:var(--muted);margin-bottom:8px">No comments yet — be first!</div>');
-        
+
         comments.slice().reverse().forEach(c => {
             var $c = $('<div class="comment">');
             var initials = (c.name || 'U').split(' ').map(n => n.charAt(0).toUpperCase()).slice(0, 2).join('');
@@ -158,7 +157,6 @@ $(function() {
         });
         $wrap.append(list);
 
-        // comment form
         var form = $('<div class="comment-form" role="form" aria-label="Comment form"></div>');
         form.append('<input id="c-name" type="text" placeholder="Your name">');
         form.append('<textarea id="c-text" placeholder="Write a short comment"></textarea>');
@@ -175,15 +173,14 @@ $(function() {
             renderCommentsFor(title);
         });
 
-        // remove comment (dev alt+click)
-        list.on('click', '.comment', e => { 
-            if (e.altKey) { 
-                var idx = $(e.currentTarget).index(); 
-                comments.splice(comments.length - 1 - idx, 1); 
-                saveComments(title, comments); 
-                renderCommentsFor(title); 
-                showToast('Comment removed'); 
-            } 
+        list.on('click', '.comment', e => {
+            if (e.altKey) {
+                var idx = $(e.currentTarget).index();
+                comments.splice(comments.length - 1 - idx, 1);
+                saveComments(title, comments);
+                renderCommentsFor(title);
+                showToast('Comment removed');
+            }
         });
     }
 
