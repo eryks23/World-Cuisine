@@ -2,7 +2,7 @@
 
 An interactive single-page gallery and demo UI for exploring iconic dishes from around the world — built with plain HTML, CSS and jQuery.
 
-![License: MIT](LICENSE)
+[License: MIT](LICENSE)
 ![No build step](https://img.shields.io/badge/build-none%20required-blue.svg)
 
 ## Description
