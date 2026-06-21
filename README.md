@@ -22,7 +22,7 @@ World Cuisine is a static front-end project that showcases a small photo gallery
 - [Limitations & Notes](#limitations--notes)
 - [Contributing](#contributing)
 - [License](#license)
-- [Author / Contact](#author--contact)
+- [Author](#author--contact)
 
 ## Key Features
 
